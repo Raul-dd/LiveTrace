@@ -3,6 +3,7 @@ import React, { useRef, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { registerUser } from "../services/authService";
+import { useNavigate, Link } from "react-router-dom";
 
 /* Font Awesome (ya instalado vía npm) */
 import "../..//node_modules/@fortawesome/fontawesome-free/css/all.min.css";
@@ -297,7 +298,7 @@ export default function RegisterPage() {
             <Button ref={btnRef} type="submit">Registrarme</Button>
 
             <Prompt>
-              ¿Ya tienes cuenta? <a href="/login">Inicia sesión</a>
+              ¿Ya tienes cuenta? <Link to="/login">Inicia sesión</Link>
             </Prompt>
           </form>
 
