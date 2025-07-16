@@ -1,9 +1,8 @@
 // src/pages/RegisterPage.jsx
 import React, { useRef, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
-import { useNavigate } from "react-router-dom";
-import { registerUser } from "../services/authService";
 import { useNavigate, Link } from "react-router-dom";
+import { registerUser } from "../services/authService";
 
 /* Font Awesome (ya instalado vía npm) */
 import "../..//node_modules/@fortawesome/fontawesome-free/css/all.min.css";
