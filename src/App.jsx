@@ -6,14 +6,12 @@ import RegisterPage from "./pages/RegisterPage";
 import AdminDashboard from "./pages/AdminDashboard";
 import UserDashboard from "./pages/UserDashboard";
 
-import { BrowserRouter as Router } from 'react-router-dom';
-
 import { getAuthUser } from "./services/auth"; // Lo crearemos en el siguiente paso
 
 function ProtectedRoute({ children, role }) {
   const user = getAuthUser();
 
-  if (!user) return <Navigate to="/" />;
+  if (!user) return <Navigate to="/login" />;
 
   if (role && user.role !== role) return <Navigate to="/" />;
 
