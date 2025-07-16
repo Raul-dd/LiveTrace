@@ -6,6 +6,8 @@ import RegisterPage from "./pages/RegisterPage";
 import AdminDashboard from "./pages/AdminDashboard";
 import UserDashboard from "./pages/UserDashboard";
 
+import { BrowserRouter as Router } from 'react-router-dom';
+
 import { getAuthUser } from "./services/auth"; // Lo crearemos en el siguiente paso
 
 function ProtectedRoute({ children, role }) {
@@ -22,7 +24,8 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<LoginPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/register" element={<RegisterPage />} />
 
         <Route
