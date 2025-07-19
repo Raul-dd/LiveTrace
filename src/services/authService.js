@@ -17,6 +17,9 @@ export const registerUser = async ({ name, email, password, role }) => {
     uid
   });
 
+  const userData = { uid, name, email, role };
+  localStorage.setItem("user", JSON.stringify(userData));
+  
   return uid;
 };
 

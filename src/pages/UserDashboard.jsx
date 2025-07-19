@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { auth, db } from "../firebaseConfig";
 import { ref, update } from "firebase/database";
 import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
+import { db, auth } from "../firebaseConfig";
+import { useNavigate } from "react-router-dom";
 
 const containerStyle = {
   width: "100%",
@@ -10,6 +11,15 @@ const containerStyle = {
 
 export default function UserDashboard() {
   const [position, setPosition] = useState(null);
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    auth.signOut();
+    localStorage.removeItem("user");
+    navigate("/login");
+  };
+
 
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY

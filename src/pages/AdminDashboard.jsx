@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { db } from "../firebaseConfig";
 import { ref, onValue } from "firebase/database";
 import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
+import { db, auth } from "../firebaseConfig";
+import { useNavigate } from "react-router-dom";
 
 const containerStyle = {
   width: "100%",
@@ -14,6 +15,14 @@ export default function AdminDashboard() {
   const [selectedUser, setSelectedUser] = useState(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [zoom, setZoom] = useState(15); // antes del return
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    auth.signOut();
+    localStorage.removeItem("user");
+    navigate("/login");
+  };
 
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY
@@ -79,9 +88,30 @@ export default function AdminDashboard() {
         }}>
           Administrador - Usuarios conectados
         </span>
+        
       </header>
-
-
+      
+      {/* Botón cerrar sesión */}
+      <button
+        onClick={handleLogout}
+        style={{
+          position: "absolute",
+          top: "10px",
+          right: "25px",
+          zIndex: 1001,
+          backgroundColor: "#dc2626", // rojo
+          color: "white",
+          border: "none",
+          borderRadius: "6px",
+          padding: "10px 15px",
+          cursor: "pointer",
+          fontSize: "0.95rem",
+          fontWeight: "bold",
+          boxShadow: "0px 2px 6px rgba(0,0,0,0.3)"
+        }}
+      >
+        Cerrar sesión
+      </button>
 
       {/* Botón hamburguesa */}
       <button
@@ -185,5 +215,7 @@ export default function AdminDashboard() {
         </div>
       </div>
     </div>
+    
   );
+  
 }

@@ -201,13 +201,15 @@ export default function RegisterPage() {
   const roleRef    = useRef(null);
   const btnRef     = useRef(null);
   const shoeRef    = useRef(null);
+  const nameRef    = useRef(null); // 👈 ESTA LÍNEA NUEVA
 
   const handleRegister = async (e) => {
     e.preventDefault();
     const form = {
       email:    emailRef.current.value,
       password: passRef.current.value,
-      role:     roleRef.current.value
+      role:     roleRef.current.value,
+      name:     nameRef.current.value
     };
     try {
       await registerUser(form);
@@ -276,6 +278,15 @@ export default function RegisterPage() {
               />
               <i className="fas fa-envelope icon"/>
             </FormGroup>
+
+            <FormGroup>
+            <Input
+              type="text"
+              placeholder="Nombre o alias"
+              ref={nameRef}
+            />
+            <i className="fas fa-user icon"/>
+          </FormGroup>
 
             <FormGroup>
               <Input
